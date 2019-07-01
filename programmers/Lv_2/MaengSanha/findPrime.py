@@ -8,20 +8,19 @@
 # numbers는 0~9까지 숫자만으로 이루어져 있습니다.
 # 013은 0, 1, 3 숫자가 적힌 종이 조각이 흩어져있다는 의미입니다.
 
-from math import sqrt
 from itertools import permutations
 
-def is_prime(n) :
+def is_prime(n : int) -> bool :
     if n==2 :
         return True
     elif n==1 or n%2==0 :
         return False
-    for i in range(3, int(sqrt(n))+1, 2) :
+    for i in range(3, int(n**0.5)+1, 2) :
         if n%i==0 :
             return False
     return True
 
-def findPrime(numbers) :
+def findPrime(numbers) -> int :
     answer = 0
     primes = []
     for i in range(1, len(numbers)+1) :

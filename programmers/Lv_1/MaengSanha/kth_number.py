@@ -14,16 +14,12 @@
 # commands의 길이는 1 이상 50 이하입니다.
 # commands의 각 원소는 길이가 3입니다.
 
-def kth_number(array, commands):
+
+def kth_number(array, commands) :
     answer = []
-    for tempt in range(len(commands)):
-        copy = []
-        i=commands[tempt][0]
-        j=commands[tempt][1]
-        k=commands[tempt][2]
-        for tempt2 in range(i-1,j):
-            copy.append(array[tempt2])
-        copy.sort()
-        answer.append(copy[k-1])
-    
+    for command in commands :
+        i = command[0]
+        j = command[1]
+        k = command[2]
+        answer.append(sorted(array[i-1:j])[k-1])
     return answer

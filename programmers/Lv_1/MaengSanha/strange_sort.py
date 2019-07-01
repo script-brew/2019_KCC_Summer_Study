@@ -11,6 +11,4 @@
 from operator import itemgetter
 
 def strange_sort(strings, n) :
-    strings.sort()
-    strings.sort(key = itemgetter(n))
-    return strings
+    return sorted(sorted(strings), key=itemgetter(n))

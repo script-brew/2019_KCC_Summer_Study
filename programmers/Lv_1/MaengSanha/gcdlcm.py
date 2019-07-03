@@ -5,21 +5,7 @@
 # 제한 사항
 # 두 수는 1이상 1000000이하의 자연수입니다.
 
-# greatest common divisor
-def GCD(n, m) :
-    while m>0 :
-        if n>m :
-            tmp = n
-            n = m
-            m = tmp
-        m -= n
-    return n
+from fractions import gcd
 
-# least common multiple
-def LCM(n, m) :
-    return int(n*m/GCD(n,m))
-
-def gcdlcm(n, m) :
-    gcd = GCD(n, m)
-    lcm = LCM(n, m)
-    return [gcd, lcm]
+def gcdlcm(n :int , m : int) :
+    return [gcd(n, m), int(n*m/gcd(n, m))]

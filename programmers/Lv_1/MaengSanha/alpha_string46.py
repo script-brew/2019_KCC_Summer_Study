@@ -4,7 +4,7 @@
 # 제한 사항
 # s는 길이 1 이상, 길이 8 이하인 문자열입니다.
 
-def alpha_string46(s) :
+def alpha_string_4_6(s) :
     if len(s) != 4 and len(s) != 6 :
         return False
     

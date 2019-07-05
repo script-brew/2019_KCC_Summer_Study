@@ -7,5 +7,5 @@
 
 from fractions import gcd
 
-def gcdlcm(n :int , m : int) :
+def gcd_lcm(n :int , m : int) :
     return [gcd(n, m), int(n*m/gcd(n, m))]

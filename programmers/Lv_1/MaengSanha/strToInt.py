@@ -6,5 +6,5 @@
 # s는 부호와 숫자로만 이루어져있습니다.
 # s는 0으로 시작하지 않습니다.
 
-def strToInt(s) :
+def str_to_int(s) :
     return int(s)

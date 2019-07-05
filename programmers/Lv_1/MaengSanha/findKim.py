@@ -6,7 +6,7 @@
 # seoul의 원소는 길이 1 이상, 20 이하인 문자열입니다.
 # Kim은 반드시 seoul 안에 포함되어 있습니다.
 
-def findKim(seoul) :
+def find_kim(seoul) :
     answer = '김서방은 '
     x = seoul.index("Kim")
     answer += str(x)

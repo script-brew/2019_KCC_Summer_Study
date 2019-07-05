@@ -4,5 +4,5 @@
 # num은 int 범위의 정수입니다.
 # 0은 짝수입니다.
 
-def evenOrOdd(num) :
+def even_or_odd(num) :
     return "Even" if num%2 else "Odd"

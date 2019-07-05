@@ -5,7 +5,7 @@
 # 제한 조건
 # n은 1이상 8000000000 이하인 자연수입니다.
 
-def intToDesc(n) :
+def int_to_desc(n) :
     lst = sorted(str(n))
     lst.reverse()
     answer = ''

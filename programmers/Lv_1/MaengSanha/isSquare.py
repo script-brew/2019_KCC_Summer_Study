@@ -6,5 +6,5 @@
 
 from math import sqrt
 
-def isSquare(n) :
+def is_square(n) :
     return (sqrt(n)+1)**2 if sqrt(n) == int(sqrt(n)) else -1

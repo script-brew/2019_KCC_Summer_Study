@@ -9,10 +9,10 @@
 
 from fractions import gcd
 
-def lcm(n : int, m : int) -> int :
-    return int(n*m/gcd(n, m))
+def n_lcm(arr) -> int :
+    def lcm(n : int, m : int) -> int :
+        return int(n*m/gcd(n, m))
 
-def nlcm(arr) -> int :
     answer = arr[0]
     for i in range(len(arr)) :
         answer = lcm(answer, arr[i])

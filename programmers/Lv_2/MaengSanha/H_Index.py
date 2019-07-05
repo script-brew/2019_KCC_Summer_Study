@@ -11,7 +11,7 @@
 # 과학자가 발표한 논문의 수는 1편 이상 1,000편 이하입니다.
 # 논문별 인용 횟수는 0회 이상 10,000회 이하입니다.
 
-def H_Index(citations) -> int :
+def h_index(citations) -> int :
     citations.sort(reverse = True)
     n = len(citations)
     for h in range(n, -1, -1) :

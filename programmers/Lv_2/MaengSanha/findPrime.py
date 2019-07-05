@@ -20,7 +20,7 @@ def is_prime(n : int) -> bool :
             return False
     return True
 
-def findPrime(numbers) -> int :
+def find_prime(numbers) -> int :
     answer = 0
     primes = []
     for i in range(1, len(numbers)+1) :

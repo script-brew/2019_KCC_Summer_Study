@@ -5,7 +5,7 @@
 # 행렬 arr1, arr2의 원소는 -10 이상 20 이하인 자연수입니다.
 # 곱할 수 있는 배열만 주어집니다.
 
-def productMatrix(arr1, arr2) :
+def product_matrix(arr1, arr2) :
     answer = []
     m = len(arr1)
     n = len(arr2)

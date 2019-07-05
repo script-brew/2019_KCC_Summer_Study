@@ -7,9 +7,9 @@
 # nums의 각 원소는 1 이상 1000 이하의 자연수이며, 중복된 숫자가 들어있지 않습니다.
 
 from itertools import combinations
-from findPrime import is_prime
+from Lv_2.MaengSanha.findPrime import is_prime
 
-def solution(nums) -> int :
+def make_prime(nums) -> int :
     answer = 0
     combs = list(combinations(nums, 3))
     for comb in combs :

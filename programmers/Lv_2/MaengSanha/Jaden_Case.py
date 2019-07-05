@@ -6,7 +6,7 @@
 # s는 알파벳과 공백문자(" ")로 이루어져 있습니다.
 # 첫 문자가 영문이 아닐때에는 이어지는 영문은 소문자로 씁니다. ( 첫번째 입출력 예 참고 )
 
-def Jaden_Case(s : str) -> str :
+def jaden_case(s : str) -> str :
     answer = ''
     words = []
     s_lower = s.lower()

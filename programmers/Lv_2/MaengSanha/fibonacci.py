@@ -13,12 +13,13 @@
 # 제한 사항
 # * n은 1이상, 100000이하인 자연수입니다.
 
-def Fibo(n) :
-    x, y = 0, 1
-    for i in range(n-1) :
-        y = x+y
-        x = y-x
-    return 0 if n==0 else y
 
 def fibonacci(n) :
+    def Fibo(n) :
+        x, y = 0, 1
+        for i in range(n-1) :
+            y = x+y
+            x = y-x
+        return 0 if n==0 else y
+        
     return Fibo(n)%1234567

@@ -18,9 +18,7 @@ def number_of_1(number : int) :
             cnt += 1
     return cnt
 
-def nextBigNumber(n : int) :
+def next_big_number(n : int) :
     for number in range(n+1, 2*n) :
         if number_of_1(number) == number_of_1(n) :
             return number
-
-print(nextBigNumber(78))

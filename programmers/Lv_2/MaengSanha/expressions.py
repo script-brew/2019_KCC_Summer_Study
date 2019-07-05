@@ -11,10 +11,11 @@
 # 제한사항
 # n은 10,000 이하의 자연수 입니다.
 
-def sum(n : int, k : int) -> int :
-    return k*(2*n+k-1)/2 
 
 def expressions(n : int) -> int :
+    def sum(n : int, k : int) -> int :
+        return k*(2*n+k-1)/2 
+        
     answer = 1
     for i in range(1, n) :
         for j in range(1, n//i + 1) :

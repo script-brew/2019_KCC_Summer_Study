@@ -5,7 +5,7 @@
 # 제한 조건
 # s에는 둘 이상의 정수가 공백으로 구분되어 있습니다.
 
-def solution(s : str) :
+def min_max(s : str) :
     tmp = s.split()
     for i in range(len(tmp)) :
         tmp[i] = int(tmp[i])

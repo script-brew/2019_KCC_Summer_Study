@@ -28,7 +28,7 @@ string make_large(string number, int k) {
                 idx = j+1;
             }
         }
-        number.replace(0, idx, " ");
+        number.replace(0, idx, "");
         tmp.push_back(max);
     }
     for (int i=0; i<len; ++i) {

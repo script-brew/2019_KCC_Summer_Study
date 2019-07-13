@@ -10,12 +10,12 @@
 def longest_palindrome(s : str) -> int :
     def is_palindrome(s : str) -> bool :
         half = int(len(s)/2)
-        for i in range(half) :
-            if s[i]!=s[-i-1] :
+        for idx in range(half) :
+            if s[idx]!=s[-idx-1] :
                 return False
         return True
-    for i in range(len(s), 0, -1) :
-        for j in range(0, len(s)-i+1) :
-            if is_palindrome(s[j:i+j]) :
-                return i
+    for length in range(len(s), 0, -1) :
+        for idx in range(0, len(s)-length+1) :
+            if is_palindrome(s[idx:length+idx]) :
+                return length
     return 1

@@ -23,7 +23,7 @@
 # 모든 탑의 높이는 1 이상 100 이하입니다.
 # 신호를 수신하는 탑이 없으면 0으로 표시합니다.
 
-def skill_check_2nd(heights) :
+def top(heights) :
     answer = [0 for i in range(len(heights))]
     end = len(heights) - 1
     for i in range(end, 0, -1) :

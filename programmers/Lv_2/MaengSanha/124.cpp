@@ -16,7 +16,7 @@
 // 제한사항
 // n은 500,000,000이하의 자연수 입니다.
 
-
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -43,4 +43,9 @@ string solution(int n) {
         }
     }
     return answer;
+}
+
+int main(void) {
+    cout << solution(38) << endl;
+    return 0;
 }

@@ -12,16 +12,30 @@
 # 제한사항
 # 문자열의 길이 : 1,000,000이하의 자연수
 # 문자열은 모두 소문자로 이루어져 있습니다.
+    
 
+class Stack :
+    def __init__(self) :
+        self.items = []
 
-def solution(s : str) -> int :
-    if len(s)%2 : return 0
-    canRemove = True
-    while canRemove :
-        canRemove = False
-        for i in range(len(s)-1) :
-            if s[i]==s[i+1] :
-                s = s[:i]+s[i+2:]
-                canRemove = True
-                break
-    return not len(s)
+    def push(self, item) :
+        self.items.append(item)
+    
+    def pop(self) :
+        return self.items.pop()
+    
+    def peek(self) :
+        return self.items[-1]
+    
+    def is_empty(self) :
+        return self.items==[]
+    
+
+def pairRemoval(s) :
+    stack = Stack()
+    for char in s :
+        if stack.is_empty() or stack.peek() is not char :
+            stack.push(char)
+        else :
+            stack.pop()
+    return stack.is_empty()

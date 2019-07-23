@@ -7,15 +7,15 @@
 # 문자열 s의 길이 : 2500 이하의 자연수
 # 문자열 s는 알파벳 소문자로만 구성
 
-def longest_palindrome(s : str) -> int :
-    def is_palindrome(s : str) -> bool :
+def longest_palindrome(s: str) -> int:
+    def is_palindrome(s: str) -> bool:
         half = int(len(s)/2)
-        for idx in range(half) :
-            if s[idx]!=s[-idx-1] :
+        for idx in range(half):
+            if s[idx]!=s[-idx-1]:
                 return False
         return True
-    for length in range(len(s), 0, -1) :
-        for idx in range(0, len(s)-length+1) :
-            if is_palindrome(s[idx:length+idx]) :
+    for length in range(len(s), 0, -1):
+        for idx in range(0, len(s)-length+1):
+            if is_palindrome(s[idx:length+idx]):
                 return length
     return 1

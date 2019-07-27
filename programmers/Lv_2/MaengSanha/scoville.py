@@ -13,9 +13,8 @@
 # 모든 음식의 스코빌 지수를 K 이상으로 만들 수 없는 경우에는 -1을 return 합니다.
 
 
-from heapq import heapify, heappush, heappop
-
-def scoville(foods, K : int) -> int :
+def scoville(foods, K: int) -> int:
+    from heapq import heapify, heappush, heappop
     cnt = 0
     def scoville_sum(n : int, m : int) -> int :
         return n+2*m if m>=n else 2*n+m

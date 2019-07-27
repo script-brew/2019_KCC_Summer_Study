@@ -20,12 +20,12 @@
 # skill_trees의 원소는 길이가 2 이상 26 이하인 문자열이며, 스킬이 중복해 주어지지 않습니다.
 
 
-def skill_tree(skill : str, skill_trees) -> int :
+def skill_tree(skill: str, skill_trees) -> int:
     answer = 0
-    for skill_tree in skill_trees :
-        for s in skill_tree :
-            if s not in skill :
+    for skill_tree in skill_trees:
+        for s in skill_tree:
+            if s not in skill:
                 skill_tree = skill_tree[:skill_tree.index(s)] + skill_tree[skill_tree.index(s)+1:]
-        if skill_tree == skill[:len(skill_tree)] :
+        if skill_tree == skill[:len(skill_tree)]:
             answer += 1
     return answer

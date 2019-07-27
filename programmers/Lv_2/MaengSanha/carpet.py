@@ -11,9 +11,9 @@
 # 카펫의 가로 길이는 세로 길이와 같거나, 세로 길이보다 깁니다.
 
 
-def carpet(brown, red) :
-    for col in range(1, int(red**0.5)+1) :
-        if red%col==0 :
+def carpet(brown: int, red: int):
+    for col in range(1, int(red**0.5)+1):
+        if red%col==0:
             row = red//col
-            if 2*(row+col)+4 == brown :
+            if 2*(row+col)+4 == brown:
                 return [row+2, col+2]

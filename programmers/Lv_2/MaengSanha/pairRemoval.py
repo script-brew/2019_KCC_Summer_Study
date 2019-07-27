@@ -14,28 +14,28 @@
 # 문자열은 모두 소문자로 이루어져 있습니다.
     
 
-class Stack :
-    def __init__(self) :
+class Stack:
+    def __init__(self):
         self.items = []
 
-    def push(self, item) :
+    def push(self, item):
         self.items.append(item)
     
-    def pop(self) :
+    def pop(self):
         return self.items.pop()
     
-    def peek(self) :
+    def peek(self):
         return self.items[-1]
     
-    def is_empty(self) :
-        return self.items==[]
+    def is_empty(self):
+        return self.items == []
     
 
-def pairRemoval(s) :
+def pairRemoval(s):
     stack = Stack()
-    for char in s :
-        if stack.is_empty() or stack.peek() is not char :
+    for char in s:
+        if stack.is_empty() or stack.peek() is not char:
             stack.push(char)
-        else :
+        else:
             stack.pop()
     return stack.is_empty()

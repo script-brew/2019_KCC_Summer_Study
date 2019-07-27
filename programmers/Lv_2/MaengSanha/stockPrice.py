@@ -6,15 +6,15 @@
 # prices의 길이는 2 이상 100,000 이하입니다.
 
 
-def stock_price(prices : [int]) -> [int] :
+def stock_price(prices: [int]) -> [int]:
     answer = []
-    if len(prices) == 0 :
+    if len(prices) == 0:
         return answer
-    for i in range(len(prices)-1) :
+    for i in range(len(prices)-1):
         cnt = 0
-        for j in range(i+1, len(prices)) :
+        for j in range(i+1, len(prices)):
             cnt += 1
-            if prices[j]<prices[i] :
+            if prices[j]<prices[i]:
                 break
         answer.append(cnt)
     answer.append(0)

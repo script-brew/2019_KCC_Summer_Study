@@ -30,11 +30,11 @@
 # 정답은 [ 번호, 차례 ] 형태로 return 해주세요.
 # 만약 주어진 단어들로 탈락자가 생기지 않는다면, [0, 0]을 return 해주세요.
 
-def end_to_end(n : int, words) :
-    for i in range(1, len(words)) :
-        if words[i][0] != words[i-1][-1] :
+def end_to_end(n : int, words: [str]):
+    for i in range(1, len(words)):
+        if words[i][0] != words[i-1][-1]:
             return [(i+1)%n, (i+1)//n + 1] if (i+1)%n!=0 else [n, (i+1)//n]
-        for j in range(i) :
-            if words[i]==words[j] :
+        for j in range(i):
+            if words[i]==words[j]:
                 return [(i+1)%n, (i+1)//n + 1] if (i+1)%n!=0 else [n, (i+1)//n]
     return [0, 0]

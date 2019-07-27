@@ -17,16 +17,16 @@
 # n은 500,000,000이하의 자연수 입니다.
 
 
-def _124(n : int) -> str :
+def _124(n: int) -> str:
     answer = ''
-    while n>0 :
-        if n%3==0 :
+    while n>0:
+        if n%3==0:
             answer = '4'+answer
             n = n//3 - 1
-        elif n%3==1 :
+        elif n%3==1:
             answer = '1'+answer
             n = n//3
-        else :
+        else:
             answer = '2'+answer
             n = n//3
     return answer

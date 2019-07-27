@@ -5,19 +5,17 @@
 # 행렬 arr1, arr2의 원소는 -10 이상 20 이하인 자연수입니다.
 # 곱할 수 있는 배열만 주어집니다.
 
-def product_matrix(arr1, arr2) :
+def product_matrix(arr1, arr2):
     answer = []
     m = len(arr1)
     n = len(arr2)
     p = len(arr2[0])
-
-    for i in range(m) :
+    for i in range(m):
         tmp = []
-        for j in range(p) :
+        for j in range(p):
             sum = 0
-            for k in range(n) :
+            for k in range(n):
                 sum += arr1[i][k]*arr2[k][j]
             tmp.append(sum)
         answer.append(tmp)
-
     return answer

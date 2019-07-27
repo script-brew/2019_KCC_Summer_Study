@@ -53,7 +53,7 @@
 #     numbers = [str(number) for number in numbers]
 #     return str(int(''.join(sorted(numbers, key = cmp_to_key(lambda x, y : int(x+y)-int(y+x)), reverse = True))))
 
-def largest(numbers) -> str :
+def largest(numbers) -> str:
     numbers = [str(number) for number in numbers]
-    numbers.sort(key = lambda x : x*3, reverse = True)
+    numbers.sort(key = lambda x : x*3, reverse=True)
     return str(int(''.join(numbers)))

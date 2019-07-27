@@ -18,12 +18,12 @@
 # A, B : N 이하인 자연수 (단, A ≠ B 입니다.)
 
 
-def tournament(n: int, a : int, b: int) -> int :
+def tournament(n:int, a: int, b: int) -> int:
     cnt = 1
-    while True :
-        if abs(a-b)==1 and (a+1)//2==(b+1)//2 :
+    while True:
+        if abs(a-b) == 1 and (a+1)//2==(b+1)//2:
             return cnt
-        else :
+        else:
             a = (a+1)//2
             b = (b+1)//2
             cnt += 1

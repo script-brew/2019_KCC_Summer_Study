@@ -8,29 +8,27 @@
 # numbers는 0~9까지 숫자만으로 이루어져 있습니다.
 # 013은 0, 1, 3 숫자가 적힌 종이 조각이 흩어져있다는 의미입니다.
 
-from itertools import permutations
 
-def is_prime(n : int) -> bool :
-    if n==2 :
-        return True
-    elif n==1 or n%2==0 :
-        return False
-    for i in range(3, int(n**0.5)+1, 2) :
-        if n%i==0 :
+def find_prime(numbers) -> int:
+    from itertools import permutations
+    def is_prime(n: int) -> bool:
+        if n==2:
+            return True
+        elif n==1 or n%2==0:
             return False
+        for i in range(3, int(n**0.5)+1, 2):
+            if n%i==0:
+                return False
     return True
-
-def find_prime(numbers) -> int :
-    answer = 0
+    answer=0
     primes = []
-    for i in range(1, len(numbers)+1) :
+    for i in range(1, len(numbers)+1):
         perms = list(permutations(numbers, i))
-        for perm in perms :
-            target = ''
-            for p in perm :
+        for perm in perms:
+            target=''
+            for p in perm:
                 target += p
-            if is_prime(int(target)) and int(target) not in primes :
+            if is_prime(int(target)) and int(target) not in primes:
                 primes.append(int(target))
                 answer += 1
-
     return answer

@@ -14,12 +14,11 @@
 # * n은 1이상, 100000이하인 자연수입니다.
 
 
-def fibonacci(n) :
-    def Fibo(n) :
+def fibonacci(n):
+    def fibo(n):
         x, y = 0, 1
-        for i in range(n-1) :
+        for i in range(n-1):
             y = x+y
             x = y-x
         return 0 if n==0 else y
-        
-    return Fibo(n)%1234567
+    return fibo(n)%1234567

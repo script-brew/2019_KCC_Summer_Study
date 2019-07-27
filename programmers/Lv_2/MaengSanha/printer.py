@@ -21,26 +21,26 @@
 # location은 0 이상 (현재 대기목록에 있는 작업 수 - 1) 이하의 값을 가지며 대기목록의 가장 앞에 있으면 0, 두 번째에 있으면 1로 표현합니다.
 
 
-def printer(priorities : [int], location : int) -> int :
+def printer(priorities: [int], location: int) -> int:
     q = list()
     tmp = dict()
-    cnt = 0
+    cnt=0
     isLargest = False
-    for i in range(len(priorities)) :
+    for i in range(len(priorities)):
         q.append([i, priorities[i]])
-    while len(q)>0 :
+    while len(q)>0:
         J = q[0]
         del q[0]
-        for doc in q :
-            if doc[1]>J[1] :
+        for doc in q:
+            if doc[1]>J[1]:
                 q.append(J)
                 isLargest = False
                 break
-            else :
+            else:
                 isLargest = True
-        if isLargest :
+        if isLargest:
             cnt += 1
             print(J)
-            if J[0] == location :
+            if J[0]==location:
                 return cnt
     return len(priorities)

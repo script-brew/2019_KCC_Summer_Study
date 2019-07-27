@@ -22,14 +22,14 @@
 #             return False
 #     return True
 
-def is_prefix(str1, str2) :
+def is_prefix(str1, str2):
     return str1[:len(str2)]==str2 if len(str1)>=len(str2) else str2[:len(str1)]==str1
 
-def phone_list(phone_book) :
-    for i in range(len(phone_book)) :
-        phone_book[i] = phone_book[i].replace(" ", "")
-    for i in range(1, len(phone_book)) :
-        for j in range(i) :
-            if is_prefix(phone_book[i], phone_book[j]) :
+def phone_list(phone_book):
+    for i in range(len(phone_book)):
+        phone_book[i] = phone_book[i].replace(' ', '')
+    for i in range(1, len(phone_book)):
+        for j in range(i):
+            if is_prefix(phone_book[i], phone_book[j]):
                 return False
     return True

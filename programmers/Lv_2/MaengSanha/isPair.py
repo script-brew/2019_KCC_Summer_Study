@@ -9,17 +9,17 @@
 # 문자열 s의 길이 : 100,000 이하의 자연수
 # 문자열 s는 '(' 또는 ')' 로만 이루어져 있습니다.
 
-def is_pair(s : str) -> bool :
-    if s[0] == ')' or s[-1] == '(' :
+def is_pair(s: str) -> bool:
+    if s[0] == ')' or s[-1] == '(':
         return False
     cnt = 0
-    for bracket in s :
-        if bracket == '(' :
+    for bracket in s:
+        if bracket == '(':
             cnt += 1
-        elif bracket == ')' :
+        elif bracket == ')':
             cnt -= 1
-        if cnt == -1 :
+        if cnt == -1:
             return False
-    if cnt != 0 :
+    if cnt != 0:
         return False
     return True

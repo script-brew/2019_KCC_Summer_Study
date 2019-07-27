@@ -19,11 +19,11 @@
 # 스파이는 하루에 최소 한 개의 의상은 입습니다.
 
 
-def camouflage(clothes : [[]]) -> int :
+def camouflage(clothes: [[]]) -> int:
     from collections import Counter
     answer = 1
     clothes = list(kind[1] for kind in clothes)
     result = Counter(clothes)
-    for key in result :
+    for key in result:
         answer *= result[key]+1
     return answer-1

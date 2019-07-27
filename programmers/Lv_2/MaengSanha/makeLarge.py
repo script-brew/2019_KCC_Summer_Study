@@ -22,13 +22,13 @@
 #         answer += max
 #     return answer
 
-def make_large(number : str, k : int) -> str :
+def make_large(number: str, k: int) -> str:
     stack = [number[0]]
-    for n in number[1:] :
-        while len(stack)>0 and stack[-1]<n and k>0 :
+    for n in number[1:]:
+        while len(stack)>0 and stack[-1]<n and k>0:
             k -= 1
             stack.pop()
         stack.append(n)
-    if k is not 0 :
+    if k is not 0:
         stack = stack[:-k]
     return ''.join(stack)

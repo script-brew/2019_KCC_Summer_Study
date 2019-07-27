@@ -9,10 +9,10 @@
 from itertools import combinations
 from Lv_2.MaengSanha.findPrime import is_prime
 
-def make_prime(nums) -> int :
-    answer = 0
+def make_prime(nums) -> int:
+    answer=0
     combs = list(combinations(nums, 3))
-    for comb in combs :
-        if is_prime(sum(comb)) :
-            answer += 1
+    for comb in combs:
+        if is_prime(sum(comb)):
+            answer+=1
     return answer

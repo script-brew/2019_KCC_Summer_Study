@@ -10,15 +10,14 @@
 # 제한 사항
 # n은 1,000,000 이하의 자연수 입니다.
 
-def number_of_1(number : int) -> int :
-    cnt = 0
+def number_of_1(number: int) -> int:
+    cnt=0
     binary_number = format(number, 'b')
-    for num in binary_number :
-        if num == '1' :
-            cnt += 1
+    for num in binary_number:
+        if num=='1':
+            cnt+=1
     return cnt
-
-def next_big_number(n : int) -> int :
-    for number in range(n+1, 2*n) :
-        if number_of_1(number) == number_of_1(n) :
+def next_big_number(n: int) -> int:
+    for number in range(n+1, 2*n):
+        if number_of_1(number)==number_of_1(n):
             return number

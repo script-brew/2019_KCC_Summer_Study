@@ -22,5 +22,4 @@
 # 숫자 K: 1 이상의 자연수
 
 
-def jump_and_teleport(n : int) -> int :
-    return format(n, 'b').count('1')
+def jump_and_teleport(n: int) -> int: return format(n, 'b').count('1')

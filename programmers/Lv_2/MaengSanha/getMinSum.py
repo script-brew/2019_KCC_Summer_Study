@@ -17,10 +17,10 @@
 # 배열 A, B의 크기 : 1,000 이하의 자연수
 # 배열 A, B의 원소의 크기 : 1,000 이하의 자연수
 
-def get_min_sum(A, B) :
-    sum = 0
+def get_min_sum(A, B):
+    sum=0
     A.sort()
     B.sort(reverse = True)
-    for i in range(len(A)) :
+    for i in range(len(A)):
         sum += A[i]*B[i]
     return sum

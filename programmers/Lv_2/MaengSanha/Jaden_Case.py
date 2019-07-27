@@ -6,19 +6,19 @@
 # s는 알파벳과 공백문자(" ")로 이루어져 있습니다.
 # 첫 문자가 영문이 아닐때에는 이어지는 영문은 소문자로 씁니다. ( 첫번째 입출력 예 참고 )
 
-def jaden_case(s : str) -> str :
-    answer = ''
+def jaden_case(s: str) -> str:
+    answer=''
     words = []
     s_lower = s.lower()
-    for word in s_lower :
+    for word in s_lower:
         words.append(word)
     words[0] = words[0].upper()
-    for i in range(1, len(words)-1) :
-        if words[i] == ' ' :
+    for i in range(1, len(words)-1):
+        if words[i]==' ':
             continue
-        elif words[i-1] == ' ' :
+        elif words[i-1]==' ':
             words[i] = words[i].upper()
-    for word in words :
+    for word in words:
         answer += word
     return answer
 

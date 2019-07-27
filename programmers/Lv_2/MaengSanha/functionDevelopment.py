@@ -14,19 +14,19 @@
 # 예를 들어 진도율이 95%인 작업의 개발 속도가 하루에 4%라면 배포는 2일 뒤에 이루어집니다.
 
 
-def function_development(progresses : [int], speeds : [int]) -> [int] :
+def function_development(progresses: [int], speeds: [int]) -> [int]:
     from queue import Queue
     from math import ceil
     qu = Queue()
-    for i in range(len(progresses)) :
+    for i in range(len(progresses)):
         qu.put(ceil((100-progresses[i])/speeds[i]))
     item = qu.get()
     deploy = [1]
-    while qu.qsize()!=0 :
+    while qu.qsize()!=0:
         tmp = qu.get()
-        if tmp<=item :
+        if tmp<=item:
             deploy[-1] += 1
-        else :
+        else:
             item = tmp
             deploy.append(1)
     return deploy

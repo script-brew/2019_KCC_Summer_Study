@@ -1,7 +1,0 @@
-기본적인 설치 및 프로젝트 생성 후 Hello world만들기
-- 설치는 안드로이드 스튜디오
-- 프로젝트 생성에 들어가면 이름을 설정하고 API를 설정하는데 기본적으로 Jelly Bean을 사용한다고 함
-- 프로젝트를 생성하면 java 폴더, layout 폴더 등이 생성된다.
-- activity_main.xml에서 디자인이 보이지 않는 경우 values폴더에
-- styles.xml에서 <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">를 설정하면 된다.
-- 디자인이 한 곳으로 뭉쳐지는 경우 infer constraints를 설정하면 된다.

@@ -1,4 +1,5 @@
-/* jshint esversion: 8 */
+// jshint esversion: 8
+// Runtime: Node.js 8
 
 const admin = require('firebase-admin');
 const functions = require('firebase-functions');
@@ -16,21 +17,20 @@ const db = admin.firestore();
 
 exports.signin = functions.https.onRequest((request, response) => {
     // get request data, parse
-    var id = request.body.user_info.user_id;
-    var pw = request.body.user_info.user_pw;
+    var data = JSON.parse(Object.keys(request.body)[0]);
+    var id = data.user_info.user_id;
+    var pw = data.user_info.user_pw;
     // create default response query
-    var res = {
-        'status_code': 400
-    };
+    var status_code = 400;
     db.collection('UserInfo').get().then((snapshot) => {
         snapshot.forEach((doc) => {
             if (doc.user_id===id && doc.user_pw===pw){
                 // change status code
-                res.status_code = 200;
+                status_code = 200;
             }
         });
-        // send response query to Android
-        response.send(JSON.stringify(res));
+        // send response query to https
+        response.send(status_code);
         // return Promise
         return;
     }).catch((err) => {
@@ -42,21 +42,22 @@ exports.signin = functions.https.onRequest((request, response) => {
 
 exports.signup = functions.https.onRequest((request, response) => {
     // get request data, parse
-    var id = request.body.user_info.user_id;
-    var pw = request.body.user_info.user_pw;
+    var data = JSON.parse(Object.keys(request.body)[0]);
+    var id = data.user_info.user_id;
+    var pw = data.user_info.user_pw;
+    var name = data.user_info.user_name;
+    var birthday = data.user_info.user_birthday;
     // create default response query
-    var res = {
-        'status_code': 400
-    };
+    var status_code = 400;
     // update data on Database
     db.collection('UserInfo').doc().set({
         'user_id': id,
-        'user_pw': pw
+        'user_pw': pw,
+        'user_name': name,
+        'user_birthday': birthday
     });
     // change status code
-    res.status_code = 200;
-    // if Error occurs, go to Firebase\functions\log
-    console.log(res.status_code);
-    // send response query to Android
-    response.send(JSON.stringify(res));
+    status_code = 200;
+    // send response query to https
+    response.send(status_code);
 });

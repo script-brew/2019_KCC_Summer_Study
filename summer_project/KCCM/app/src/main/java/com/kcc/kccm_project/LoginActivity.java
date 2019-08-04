@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {                      //클릭을 받아들이는 리스너
                 String email = idText.getText().toString(); //email이게 때문에 string으로 반환받아야함
                 String password = passworText.getText().toString();
-                Intent intent = new Intent(LoginActivity.this,LoginResultActivity.class);  //값 넘길때 쓰는 메소드
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);  //값 넘길때 쓰는 메소드
                 intent.putExtra("email",email);
                 intent.putExtra("password",password);
                 startActivity(intent); //intent를 넘겨줌

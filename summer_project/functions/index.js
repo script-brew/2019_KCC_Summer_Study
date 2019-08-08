@@ -24,11 +24,21 @@ exports.signin = functions.https.onRequest((request, response) => {
     var status_code = 400;
     db.collection('UserInfo').get().then((snapshot) => {
         snapshot.forEach((doc) => {
-            if (doc.user_id===id && doc.user_pw===pw){
-                // change status code
-                status_code = 200;
+            // if id match
+            if (doc.user_id===id){
+                // if password match
+                if (doc.user_pw===pw){
+                    // change status code
+                    status_code = 200;
+                }
+                // if password not match
+                if (doc.user_pw!==pw){
+                    // change status code
+                    status_code = 201;
+                }
             }
         });
+        console.log("status_code: ", status_code);
         // send response query to https
         response.send(status_code);
         // return Promise
@@ -49,6 +59,21 @@ exports.signup = functions.https.onRequest((request, response) => {
     var birthday = data.user_info.user_birthday;
     // create default response query
     var status_code = 400;
+    db.collection('UserInfo').get().then((snapshot) => {
+        snapshot.forEach((doc) => {
+            // if id already exist in Database
+            if (doc.data().user_id===id){
+                console.log("id overlapped: ", id);
+                status_code = 202;
+                console.log("status_code: ", status_code);
+                response.send(status_code);
+            }
+        }); // end forEach
+        // return Promise
+        return;
+    }).catch((err) => {
+        console.log("Error getting documents", err);
+    });
     // update data on Database
     db.collection('UserInfo').doc().set({
         'user_id': id,
@@ -58,6 +83,7 @@ exports.signup = functions.https.onRequest((request, response) => {
     });
     // change status code
     status_code = 200;
+    console.log("status_code: ", status_code);
     // send response query to https
     response.send(status_code);
 });

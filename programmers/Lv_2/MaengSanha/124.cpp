@@ -21,10 +21,13 @@
 
 using namespace std;
 
-string solution(int n){
+string solution(int n)
+{
     string answer = "";
-    while (n>0){
-        switch (n%3){
+    while (n>0)
+    {
+        switch (n%3)
+        {
             case 0:
                 answer = "4" + answer;
                 n = n/3 - 1;

@@ -15,24 +15,25 @@
 
 using namespace std;
 
-string make_large(string number, int k){
+string make_large(string number, int k)
+{
     string answer = "";
     int len = number.length() - k;
     int max, idx;
     vector<int> tmp;
-    for (int i=len; i>0; --i){
+    for (int i=len; i>0; --i)
+    {
         max = 0;
-        for (int j=0; j<number.length()-i+1; ++j){
-            if (max<number[j]){
-                max = number[j];
-                idx = j+1;
-            }
+        for (int j=0; j<number.length()-i+1; ++j)
+        {
+            if (max<number[j])
+                max = number[j], idx = j+1;
         }
         number.replace(0, idx, "");
         tmp.push_back(max);
     }
-    for (int i=0; i<len; ++i){
+    for (int i=0; i<len; ++i)
         answer += tmp[i];
-    }
+        
     return answer;
 }

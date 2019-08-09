@@ -18,15 +18,19 @@ class Stack:
     def __init__(self):
         self.items = []
 
+    @classmethod
     def push(self, item):
         self.items.append(item)
-    
+
+    @classmethod
     def pop(self):
         return self.items.pop()
-    
+
+    @classmethod
     def peek(self):
         return self.items[-1]
-    
+        
+    @classmethod
     def is_empty(self):
         return self.items == []
     

@@ -16,8 +16,8 @@ public class RequestUtil {
         String response;
         HttpURLConnection connection = null;
         try {
-            URL reqeustUrl = new URL(url);
-            connection = (HttpURLConnection) reqeustUrl.openConnection();
+            URL requestUrl = new URL(url);
+            connection = (HttpURLConnection) requestUrl.openConnection();
 
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Accept-Charset", "application/json");

@@ -1,4 +1,4 @@
-package com.kcc.kccm_project;
+package com.kcc.kccm_project.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,11 +8,12 @@ import android.widget.EditText;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kcc.kccm_project.logic.SignLogic;
-import com.kcc.kccm_project.service.SignService;
+import com.kcc.kccm_project.Entity.UserInfo;
+import com.kcc.kccm_project.R;
+import com.kcc.kccm_project.controller.SignController;
 
 public class RegisterActivity extends AppCompatActivity {
-    private SignService signService;
+    private SignController signController;
     private AlertDialog.Builder builder;
 
     @Override
@@ -20,8 +21,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        signService = new SignLogic();
+        signController = new SignController();
         builder = new AlertDialog.Builder(this);
+
         EditText idText = (EditText) findViewById(R.id.R_idtext);
         EditText passworText = (EditText) findViewById(R.id.R_passwordtext);
         EditText nameText = (EditText) findViewById(R.id.R_nametext);
@@ -34,7 +36,10 @@ public class RegisterActivity extends AppCompatActivity {
             String name = nameText.getText().toString();
             String birthday = ageText.getText().toString();
 
-            String response = signService.signUp(id, password, name, birthday);
+            UserInfo userInfo =
+                    new UserInfo(id, password, name, "software", birthday);
+
+            String response = signController.signUp(userInfo);
 
             if(response.equals("OK")) {
                 builder.setTitle("Success")

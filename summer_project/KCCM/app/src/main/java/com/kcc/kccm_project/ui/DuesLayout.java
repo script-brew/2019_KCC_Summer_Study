@@ -1,4 +1,4 @@
-package com.kcc.kccm_project;
+package com.kcc.kccm_project.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,15 +8,17 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-// 스터디관리 레이아웃
 
-public class StudyLayout extends Fragment {
+import com.kcc.kccm_project.R;
+
+//회식관리 레이아웃 처리하는부분
+public class DuesLayout extends Fragment {
     View v;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        v=inflater.inflate(R.layout.board_study,container,false);
+        v=inflater.inflate(R.layout.board_dues,container,false);
         return v;
     }
 }

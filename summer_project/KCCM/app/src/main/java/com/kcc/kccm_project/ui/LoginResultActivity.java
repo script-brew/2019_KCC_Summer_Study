@@ -1,4 +1,4 @@
-package com.kcc.kccm_project;
+package com.kcc.kccm_project.ui;
 
 import android.content.Intent;
 import android.os.Bundle;

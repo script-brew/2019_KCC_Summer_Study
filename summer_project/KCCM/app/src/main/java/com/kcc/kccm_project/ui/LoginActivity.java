@@ -6,42 +6,63 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.kcc.kccm_project.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+    private EditText mEmail;
+    private EditText mPassword;
+
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        final EditText idText = (EditText) findViewById(R.id.idText);
-        final EditText passworText = (EditText) findViewById(R.id.passwordText);
-        Button loginButton =(Button) findViewById(R.id.LoginText);
-        TextView registerButton = (TextView) findViewById(R.id.registerText);
+        mEmail = findViewById(R.id.sign_idText);
+        mPassword = findViewById(R.id.sign_passwordText);
 
-        //Login 값 넘겨주기
+        //클릭할수있게해줌
+        findViewById(R.id.sign_signinbutton).setOnClickListener(this);
+        findViewById(R.id.sign_registerbutton).setOnClickListener(this);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {                      //클릭을 받아들이는 리스너
-                String email = idText.getText().toString(); //email이게 때문에 string으로 반환받아야함
-                String password = passworText.getText().toString();
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);  //값 넘길때 쓰는 메소드
-                intent.putExtra("email",email);
-                intent.putExtra("password",password);
-                startActivity(intent); //intent를 넘겨줌
-            }
-        });
+    }
 
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
-                LoginActivity.this.startActivity(registerIntent);
-            }
-        });
+    @Override
+    public void onClick(View view) {
+        switch (view.getId())
+        {
+            // 로그인 클릭했을때, SignUp
+            case R.id.sign_registerbutton:
+                startActivity(new Intent(this, RegisterActivity.class));
+                break;
+            case R.id.sign_signinbutton:
+                mAuth.signInWithEmailAndPassword(mEmail.getText().toString(),mPassword.getText().toString())
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    if (user != null) {
+                                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                                    }
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Authentication failed.",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                break;
+        }
+
     }
 }

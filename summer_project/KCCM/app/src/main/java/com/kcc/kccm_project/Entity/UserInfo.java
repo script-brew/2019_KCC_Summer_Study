@@ -3,6 +3,8 @@ package com.kcc.kccm_project.Entity;
 import com.kcc.kccm_project.util.DateUtil;
 
 public class UserInfo {
+    private String uid;
+    private String email;
     private String schoolNumber;
     private String password;
     private String name;
@@ -14,13 +16,31 @@ public class UserInfo {
         this.signUpDate = DateUtil.today();
     }
 
-    public UserInfo(String schoolNumber, String password, String name, String department, String birthday) {
+    public UserInfo(String uid, String email, String schoolNumber, String password, String name, String department, String birthday) {
         this();
+        this.uid = uid;
+        this.email = email;
         this.schoolNumber = schoolNumber;
         this.password = password;
         this.name = name;
         this.department = department;
         this.birthday = birthday;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSchoolNumber() {

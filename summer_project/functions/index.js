@@ -1,5 +1,6 @@
 // jshint esversion: 8
 // Runtime: Node.js 8
+// firebase --version: 7.2.4
 
 const admin = require('firebase-admin');
 const functions = require('firebase-functions');

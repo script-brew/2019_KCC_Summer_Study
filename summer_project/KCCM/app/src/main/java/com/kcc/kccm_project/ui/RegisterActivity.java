@@ -42,26 +42,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 .addOnCompleteListener(this, (task) -> {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-                            UserInfo userInfo = setUserInfo(user);
-                            Map<String, Object> userMap = new HashMap<>();
-                            userMap.put("uid", user.getUid());
-                            userMap.put("email", userInfo.getEmail());
-                            userMap.put("password", userInfo.getPassword());
-                            userMap.put("name", userInfo.getName());
-                            userMap.put("birthday", userInfo.getBirthday());
+                            if(user!=null) {
+                                UserInfo userInfo = setUserInfo(user);
+                                Map<String, Object> userMap = new HashMap<>();
+                                userMap.put("uid", userInfo.getUid());
+                                userMap.put("email", userInfo.getEmail());
+                                userMap.put("password", userInfo.getPassword());
+                                userMap.put("name", userInfo.getName());
+                                userMap.put("birthday", userInfo.getBirthday());
 
-                            db.collection("UserInfo")
+                                db.collection("UserInfo")
                                         .add(userMap)
-                                    .addOnSuccessListener((aVoid) -> {
-                                        Log.d("TAG", "Success to store in firestore!");
-                                    })
-                                    .addOnFailureListener((e) -> {
-                                        Log.d("TAG", "Fail to store in firestore!");
-                                    });
+                                        .addOnSuccessListener((aVoid) -> {
+                                            Log.d("TAG", "Success to store in firestore!");
+                                        })
+                                        .addOnFailureListener((e) -> {
+                                            Log.d("TAG", "Fail to store in firestore!");
+                                        });
                                 //회원가입 완료
-                            Toast.makeText(RegisterActivity.this, "Success to sign up!", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            startActivity(intent);
+                                Toast.makeText(RegisterActivity.this, "Success to sign up!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                            }
 
                         } else {
                             Toast.makeText(RegisterActivity.this, "Sign up error",
@@ -78,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String birthday = mBirthday.getText().toString();
         String password = mPassword.getText().toString();
 
-        UserInfo userInfo = new UserInfo(uid, email,"20152957", password,"software", name, birthday);
+        UserInfo userInfo = new UserInfo(uid, email, password, name, birthday);
         return userInfo;
     }
 

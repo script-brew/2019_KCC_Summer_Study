@@ -5,7 +5,6 @@ import com.kcc.kccm_project.service.SignService;
 import com.kcc.kccm_project.store.SignStore;
 import com.kcc.kccm_project.store.logic.StoreFactoryLogic;
 import com.kcc.kccm_project.util.ConversionUtil;
-import com.kcc.kccm_project.util.NoSuchUserException;
 
 public class SignServiceLogic implements SignService {
     private SignStore signStore;
@@ -17,14 +16,16 @@ public class SignServiceLogic implements SignService {
 
     @Override
     public String registerUser(UserInfo userInfo) {
+        /*
         if(userInfo.getSchoolNumber() == null) {
             throw new NoSuchUserException("Invalid user info");
-        }
+        }*/
 
         String user_Info = ConversionUtil.jsonToString(userInfo);
         String response = signStore.create(user_Info);
         return response;
     }
+
 
     @Override
     public UserInfo findUser(String schoolNumer) {

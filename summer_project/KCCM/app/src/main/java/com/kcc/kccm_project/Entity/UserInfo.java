@@ -5,14 +5,15 @@ import com.kcc.kccm_project.util.DateUtil;
 public class UserInfo {
     private String uid;
     private String email;
-    private String schoolNumber;
+    //private String schoolNumber;
     private String password;
     private String name;
     private String department;
     private String birthday;
     private String signUpDate;
 
-    public UserInfo() {
+
+    /*public UserInfo() {
         this.signUpDate = DateUtil.today();
     }
 
@@ -24,6 +25,15 @@ public class UserInfo {
         this.password = password;
         this.name = name;
         this.department = department;
+        this.birthday = birthday;
+    }*/
+    public UserInfo(String uid, String email, String password, String name, String birthday) {
+        this.uid = uid;
+        this.email = email;
+       // this.schoolNumber = schoolNumber;
+        this.password = password;
+        this.name = name;
+        //this.department = department;
         this.birthday = birthday;
     }
 
@@ -42,7 +52,7 @@ public class UserInfo {
     public void setEmail(String email) {
         this.email = email;
     }
-
+/*
     public String getSchoolNumber() {
         return schoolNumber;
     }
@@ -50,6 +60,7 @@ public class UserInfo {
     public void setSchoolNumber(String schoolNumber) {
         this.schoolNumber = schoolNumber;
     }
+*/
 
     public String getPassword() {
         return password;
@@ -66,7 +77,14 @@ public class UserInfo {
     public void setName(String name) {
         this.name = name;
     }
+    public String getBirthday() {
+        return birthday;
+    }
 
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+/*
     public String getDepartment() {
         return department;
     }
@@ -75,13 +93,7 @@ public class UserInfo {
         this.department = department;
     }
 
-    public String getBirthday() {
-        return birthday;
-    }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
 
     public String getSignUpDate() {
         return signUpDate;
@@ -90,4 +102,5 @@ public class UserInfo {
     public void setSignUpDate(String signUpDate) {
         this.signUpDate = signUpDate;
     }
+    */
 }

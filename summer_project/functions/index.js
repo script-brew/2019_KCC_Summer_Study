@@ -1,89 +1,129 @@
 // jshint esversion: 8
 // Runtime: Node.js 8
+// firebase --version: 7.2.4
 
-const admin = require('firebase-admin');
+// The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
 const functions = require('firebase-functions');
+
+// The Firebase Admin SDK to access the Firebase Realtime Database.
+const admin = require('firebase-admin');
 admin.initializeApp();
 
 const db = admin.firestore();
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+const json2excel = require('js2excel');
+
+// Create and Deploy Your First Cloud Functions
+// https://firebase.google.com/docs/functions/write-firebase-functions
+
+exports.helloWorld = functions.https.onRequest((request, response) => {
+    response.send("Hello from Firebase!");
+});
 
 
 exports.signin = functions.https.onRequest((request, response) => {
-    // get request data, parse
-    var data = JSON.parse(Object.keys(request.body)[0]);
-    var id = data.user_info.user_id;
-    var pw = data.user_info.user_pw;
-    // create default response query
-    var status_code = 400;
-    db.collection('UserInfo').get().then((snapshot) => {
+    var data = JSON.parse(Object.keys(request.body)[0]);    // get request data, parse
+    var email = data.user_info.email;
+    var password = data.user_info.password;
+
+    var status_code = 400;     // create default response query
+    db.collection("UserInfo").get().then((snapshot) => {
         snapshot.forEach((doc) => {
-            // if id match
-            if (doc.user_id===id){
-                // if password match
-                if (doc.user_pw===pw){
-                    // change status code
-                    status_code = 200;
-                }
-                // if password not match
-                if (doc.user_pw!==pw){
-                    // change status code
-                    status_code = 201;
-                }
+            if ( doc.email === email )    // if id matches
+            {
+                if ( doc.password === password )    // if password matches
+                    status_code = 200;    // change status code
+                
+                if ( doc.password !== password )    // if password not matches 
+                    status_code = 201;    // change status code
             }
         });
         console.log("status_code: ", status_code);
-        // send response query to https
-        response.send(status_code);
-        // return Promise
-        return;
+        response.send(status_code);    // send response query to https
+
+        return;    // return Promise
     }).catch((err) => {
-        // if Error occurs, go to Firebase\functions\log
-        console.log("Error getting documents", err);
+        console.log("Error getting documents", err);    // if Error occurs, go to Firebase\functions\log
     });
 });
 
 
 exports.signup = functions.https.onRequest((request, response) => {
-    // get request data, parse
-    var data = JSON.parse(Object.keys(request.body)[0]);
-    var id = data.user_info.user_id;
-    var pw = data.user_info.user_pw;
-    var name = data.user_info.user_name;
-    var birthday = data.user_info.user_birthday;
-    // create default response query
-    var status_code = 400;
-    db.collection('UserInfo').get().then((snapshot) => {
+    var data = JSON.parse(Object.keys(request.body)[0]);    // get request data, parse
+    var email = data.user_info.email;
+    var password = data.user_info.password;
+    var name = data.user_info.name;
+    var birthday = data.user_info.birthday;
+    var uid = data.user_info.uid;
+
+    var status_code = 400;    // create default response query
+    db.collection("UserInfo").get().then((snapshot) => {
         snapshot.forEach((doc) => {
-            // if id already exist in Database
-            if (doc.data().user_id===id){
-                console.log("id overlapped: ", id);
+            if ( doc.data().email === email )    // if email already exists in Database
+            {
+                console.log("email overlapped: ", email);
                 status_code = 202;
                 console.log("status_code: ", status_code);
                 response.send(status_code);
             }
         }); // end forEach
-        // return Promise
-        return;
+        
+        return;    // return Promise
     }).catch((err) => {
-        console.log("Error getting documents", err);
+        console.log("Error getting documents", err);    // if Error occurs, go to Firebase\functions\log
     });
+
     // update data on Database
     db.collection('UserInfo').doc().set({
-        'user_id': id,
-        'user_pw': pw,
-        'user_name': name,
-        'user_birthday': birthday
+        "email": email,
+        "password": password,
+        "name": name,
+        "birthday": birthday,
+        "uid": uid
     });
-    // change status code
-    status_code = 200;
+    status_code = 200;    // change status code
     console.log("status_code: ", status_code);
-    // send response query to https
-    response.send(status_code);
+    
+    response.send(status_code);    // send response query to https
+});
+
+
+exports.JSON_to_xlsx_converter = functions.https.onRequest((request, response) => {
+    var status_code = 400;    // create default response query
+    let table = [];    // excel's data will be exported, which you probably get it from server.
+    db.collection("UserInfo").get().then((snapshot) => {
+        snapshot.forEach((doc) => {
+            var data = doc.data();
+            var name = data.name;
+            var birthday = data.birthday;
+            var email = data.email;
+            table.push({
+                "name": name,
+                "birthday": birthday,
+                "email": email
+            });
+            status_code = 200;
+        });    // end forEach
+
+        // this will export a excel and the file's name is user-info-data.xlsx
+        // the default file's name is excel.xlsx
+        try
+        {
+            json2excel({
+                table,
+                name: 'user-info-data',
+                formatDate: 'yyyy/mm/dd'
+            });
+        }
+        catch (e)
+        {
+            console.error("export error");
+        }
+
+        console.log("export success");
+        response.send(status_code);    // send response query to https
+        return;    // return Promise
+    }).catch((err) => {
+        console.log("Error getting documents", err);    // if Error occurs, go to Firebase\functions\log
+    });
 });
